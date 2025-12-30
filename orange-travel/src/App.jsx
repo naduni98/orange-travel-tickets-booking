@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import SeatBooking from "./pages/SeatBooking";
 import ContactUs from "./pages/ContactUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-
+import TermsConditions from "./pages/TermsConditions";
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/seat-booking" element={<SeatBooking />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
+        <Route path="/terms-conditions" element={<TermsConditions />} />
       </Routes>
     </BrowserRouter>
   );
