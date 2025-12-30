@@ -1,1 +1,1 @@
-export {default} from './ContactUsPage';  
+export { default } from './SeatBookingPage';
