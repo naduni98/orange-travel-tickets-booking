@@ -648,7 +648,47 @@ export default function SeatBookingPage() {
         </div>
       </section>
 
-      <footer className="footer"> ... </footer>
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-grid">
+            <div className="footer-col">
+              <h3>OrangeTravel</h3>
+              <p>Premium transport services across Sri Lanka, offering comfort, safety, and unforgettable journeys.</p>
+              <div className="social-links">
+                <a href="#" className="facebook"><i className="fab fa-facebook-f" /></a>
+                <a href="#" className="twitter"><i className="fab fa-twitter" /></a>
+                <a href="#" className="instagram"><i className="fab fa-instagram" /></a>
+                <a href="#" className="whatsapp"><i className="fab fa-whatsapp" /></a>
+              </div>
+            </div>
+            <div className="footer-col">
+              <h4>Services</h4>
+              <a href="/seat-booking"><i className="fas fa-chevron-right" /> Seat Booking</a>
+              <a href="#"><i className="fas fa-chevron-right" /> Group Travel</a>
+              <a href="#"><i className="fas fa-chevron-right" /> Corporate Services</a>
+            </div>
+            <div className="footer-col">
+              <h4>Support</h4>
+              <a href="/privacy-policy"><i className="fas fa-chevron-right" /> Privacy Policy</a>
+              <a href="/terms-conditions"><i className="fas fa-chevron-right" /> Terms & Conditions</a>
+              <a href="#"><i className="fas fa-chevron-right" /> FAQ</a>
+              <a href="/contact-us"><i className="fas fa-chevron-right" /> Contact Us</a>
+            </div>
+            <div className="footer-col">
+              <h4>Contact</h4>
+              <a href="#"><i className="fas fa-map-marker-alt" /> Colombo, Sri Lanka</a>
+              <a href="tel:+94112345678"><i className="fas fa-phone" /> +94 11 234 5678</a>
+              <a href="mailto:info@orangetravel.lk"><i className="fas fa-envelope" /> info@orangetravel.lk</a>
+              <a href="#"><i className="fas fa-clock" /> 24/7 Support</a>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>© 2024 OrangeTravel Sri Lanka. All rights reserved. | Premium Transport Services</p>
+            <p style={{ marginTop: 10, fontSize: 12, opacity: 0.7 }}>This site is protected by reCAPTCHA and the Google <a href="#" style={{ color: 'var(--primary-orange)' }}>Privacy Policy</a> and <a href="#" style={{ color: 'var(--primary-orange)' }}>Terms of Service</a> apply.</p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
