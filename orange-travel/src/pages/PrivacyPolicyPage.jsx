@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './PrivacyPolicy.css';
+import '../assets/css/PrivacyPolicy.css';
 
 export default function PrivacyPolicyPage() {
   useEffect(() => {

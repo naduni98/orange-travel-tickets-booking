@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './ContactUs.css';
+import '../assets/css/ContactUs.css';
 
 export default function ContactUsPage() {
   const overlayRef = useRef(null);

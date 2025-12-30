@@ -209,6 +209,7 @@ body {
     font-weight: 800;
     color: var(--dark-gray);
     margin-bottom: 20px;
+    margin-top: 80px;
     background: linear-gradient(90deg, var(--primary-orange), var(--secondary-orange));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

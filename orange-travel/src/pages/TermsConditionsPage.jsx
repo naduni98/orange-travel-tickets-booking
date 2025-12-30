@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './TermsConditions.css';
+import '../assets/css/TermsConditions.css';
 
 export default function TermsConditionsPage() {
   useEffect(() => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import './SeatBooking.css';
+import '../assets/css/SeatBooking.css';
 
 export default function SeatBookingPage() {
   const [journeyType, setJourneyType] = useState('single');

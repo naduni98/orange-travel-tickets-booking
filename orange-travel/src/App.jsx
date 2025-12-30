@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import SeatBooking from "./pages/SeatBooking";
-import ContactUs from "./pages/ContactUs";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsConditions from "./pages/TermsConditions";
+import Home from "./pages/HomePage";
+import SeatBooking from "./pages/SeatBookingPage";
+import ContactUs from "./pages/ContactUsPage";
+import PrivacyPolicy from "./pages/PrivacyPolicyPage";
+import TermsConditions from "./pages/TermsConditionsPage";
 
 export default function App() {
   return (
