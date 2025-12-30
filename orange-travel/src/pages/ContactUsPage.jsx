@@ -9,10 +9,9 @@ export default function ContactUsPage() {
   const indexShapesRef = useRef(null);
   const [successVisible, setSuccessVisible] = useState(false);
   const [navActive, setNavActive] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState(0); // index of open FAQ
+  const [openFAQ, setOpenFAQ] = useState(0); 
 
   useEffect(() => {
-    // Shapes
     const indexShapes = document.getElementById('indexShapes');
     const shapeCount = 20;
     if (indexShapes) {
@@ -32,7 +31,7 @@ export default function ContactUsPage() {
       }
     }
 
-    // Mobile menu behavior
+    // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
     const mobileHandler = () => {
@@ -54,7 +53,6 @@ export default function ContactUsPage() {
     };
     document.addEventListener('click', outsideClick);
 
-    // FAQ intersection / animations
     const animatedElements = document.querySelectorAll('.contact-card, .faq-item, .contact-images-section, .vehicle-description');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -73,7 +71,6 @@ export default function ContactUsPage() {
       observer.observe(el);
     });
 
-    // ripple effect for buttons (delegated)
     const handleRipple = (e) => {
       const btn = e.currentTarget;
       const ripple = document.createElement('span');
@@ -130,12 +127,10 @@ export default function ContactUsPage() {
       window.removeEventListener('scroll', onScroll);
       clearTimeout(initFAQ);
       observer.disconnect();
-      // clean shapes
       if (indexShapes) while (indexShapes.firstChild) indexShapes.removeChild(indexShapes.firstChild);
     };
   }, []);
 
-  // expose close and toggle functions globally to preserve original API
   useEffect(()=>{
     window.closeSuccessMessage = () => {
       setSuccessVisible(false);
@@ -144,7 +139,6 @@ export default function ContactUsPage() {
       }, 300);
     };
     window.toggleFAQ = (el) => {
-      // find index of clicked FAQ element if the original inline handler used element param
       const all = Array.from(document.querySelectorAll('.faq-question'));
       const idx = all.indexOf(el);
       if (idx >= 0) setOpenFAQ(prev => (prev === idx ? -1 : idx));

@@ -14,7 +14,6 @@ export default function SeatBookingPage() {
   const [trainClass, setTrainClass] = useState(null);
   const [preferences, setPreferences] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
-  // Multi-leg state
   const [legs, setLegs] = useState([
     { start: '', destination: '', date: todayStr, time: '', passengers: 1, seats: [], transport: 'bus', trainClass: null },
     { start: '', destination: '', date: todayStr, time: '', passengers: 1, seats: [], transport: 'bus', trainClass: null }
@@ -26,7 +25,6 @@ export default function SeatBookingPage() {
   const removeLeg = (idx) => setLegs(prev => prev.filter((_,i) => i !== idx));
   const setAllLegsPassengers = (n) => { setMultiPassengers(n); setLegs(prev => prev.map(l => ({ ...l, passengers: n }))); };
 
-  // Build seat rows for a given leg
   const getSeatRowsForLeg = (legIndex) => {
     const leg = legs[legIndex];
     const transport = leg?.transport || 'bus';
@@ -67,17 +65,14 @@ export default function SeatBookingPage() {
     }));
   };
   const seatSeed = useMemo(() => {
-    // deterministic pure seed based on vehicleType to avoid impure Math.random in render
     let h = 2166136261 >>> 0;
     for (let i = 0; i < vehicleType.length; i++) { h = Math.imul(h ^ vehicleType.charCodeAt(i), 16777619) >>> 0; }
     return (h % 100000) / 100000;
   }, [vehicleType]);
 
   useEffect(() => {
-    // UI helpers (shapes & mobile menu) - keep minimal DOM manipulation
     const cleanupFns = [];
 
-    // Shapes
     const indexShapes = document.getElementById('indexShapes');
     const shapeCount = 15;
     const luxuryCount = 5;
@@ -139,7 +134,6 @@ export default function SeatBookingPage() {
     document.addEventListener('click', outsideClick);
     cleanupFns.push(() => document.removeEventListener('click', outsideClick));
 
-    // Basic booking scripts (simplified, copied logic for parity)
     const today = new Date().toISOString().split('T')[0];
     const singleDate = document.getElementById('single-date');
     if (singleDate) {
@@ -147,7 +141,6 @@ export default function SeatBookingPage() {
       singleDate.value = today;
     }
 
-    // Expose some global helpers for UI elements that use inline handlers
     window.scrollToMultiLeg = () => {
       document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' });
       setTimeout(() => {
@@ -160,25 +153,11 @@ export default function SeatBookingPage() {
     };
 
     window.showProfileModal = () => {
-      // basic modal stub - reuse same markup as original if needed
       alert('Profile modal (converted)');
     };
     window.showBookingHistory = () => { alert('Booking history (converted)'); };
     window.showSupportModal = () => { alert('Support modal (converted)'); };
 
-    // Tab switching is handled by React state; DOM listeners removed.
-
-    // Seat map rendering is handled by React; legacy DOM generator removed.
-
-    // Seat map visibility and content are managed by React state (startPoint, destination, vehicleType). No direct DOM watchers needed.
-
-    // Journey type toggling is handled by React state (buttons use onClick to set vehicleType). No DOM listeners are required here.
-
-    // Booking summary is updated reactively via component state; no DOM listeners needed.
-
-    // Seat selection is tracked via React state (selectedSeats). No DOM mutation observer required.
-
-    // Minimal confirm flow
     window.confirmBooking = () => {
       const seats = Array.from(document.querySelectorAll('.seat.selected')).map(s => s.dataset.seatNumber);
       if (!seats.length) {
@@ -188,7 +167,6 @@ export default function SeatBookingPage() {
       alert(`Booking confirmed for seats: ${seats.join(', ')}`);
     };
 
-    // Smooth anchor scrolls
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       const handler = (e) => {
         if (anchor.getAttribute('href') !== '#') {
@@ -203,8 +181,6 @@ export default function SeatBookingPage() {
 
     return () => { cleanupFns.forEach(fn => fn()); };
   }, [multiPassengers, todayStr]);
-
-  // --- React-driven booking logic ---
 
 
   const seatRowsMemo = useMemo(() => {
@@ -576,7 +552,6 @@ export default function SeatBookingPage() {
                           </select>
                         </div>
 
-                        {/* Seat arrangements for this leg (rendered when route and transport selected) */}
                         {leg.start && leg.destination ? (
                           <div className={`leg-seat-arrangements active`} id={`seat-arrangement-${idx+1}`}>
                             <div className="seat-arrangement-header">

@@ -4,7 +4,6 @@ import '../assets/css/PrivacyPolicy.css';
 
 export default function PrivacyPolicyPage() {
   useEffect(() => {
-    // Create glass shapes and luxury shapes
     const indexShapes = document.getElementById('indexShapes');
     const shapeCount = 20;
     const luxuryCount = 8;
@@ -49,7 +48,6 @@ export default function PrivacyPolicyPage() {
     };
     mobileMenuBtn?.addEventListener('click', mobileHandler);
 
-    // Smooth scroll for anchors
     const anchors = document.querySelectorAll('a[href^="#"]');
     const anchorHandlers = [];
     anchors.forEach(anchor => {
@@ -64,7 +62,6 @@ export default function PrivacyPolicyPage() {
       anchorHandlers.push(() => anchor.removeEventListener('click', handler));
     });
 
-    // Navbar scroll/parallax
     let lastScroll = 0;
     const navbar = document.querySelector('.navbar');
     const onScroll = () => {
@@ -79,7 +76,6 @@ export default function PrivacyPolicyPage() {
     };
     window.addEventListener('scroll', onScroll);
 
-    // Animate sections on scroll
     const animatedElements = document.querySelectorAll('.privacy-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -97,13 +93,11 @@ export default function PrivacyPolicyPage() {
       observer.observe(el);
     });
 
-    // Contact item hover icons
     const contactItems = document.querySelectorAll('.contact-item');
     const enter = (e) => { const icon = e.currentTarget.querySelector('i'); icon.style.transform = 'scale(1.2)'; };
     const leave = (e) => { const icon = e.currentTarget.querySelector('i'); icon.style.transform = 'scale(1)'; };
     contactItems.forEach(item => { item.addEventListener('mouseenter', enter); item.addEventListener('mouseleave', leave); });
 
-    // Add small dynamic style block for animations
     const style = document.createElement('style');
     style.textContent = `
       .privacy-section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -119,7 +113,6 @@ export default function PrivacyPolicyPage() {
       shapes.forEach(shape => shape.style.animationPlayState = 'running');
     }, 100);
 
-    // cleanup
     return () => {
       mobileMenuBtn?.removeEventListener('click', mobileHandler);
       anchors.forEach((a, i) => anchorHandlers[i]());

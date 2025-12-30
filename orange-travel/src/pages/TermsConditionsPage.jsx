@@ -4,7 +4,6 @@ import '../assets/css/TermsConditions.css';
 
 export default function TermsConditionsPage() {
   useEffect(() => {
-    // Create glass shapes and luxury shapes
     const indexShapes = document.getElementById('indexShapes');
     const shapeCount = 20;
     const luxuryCount = 8;
@@ -49,7 +48,6 @@ export default function TermsConditionsPage() {
     };
     mobileMenuBtn?.addEventListener('click', mobileHandler);
 
-    // Smooth scroll for anchors
     const anchors = document.querySelectorAll('a[href^="#"]');
     const anchorHandlers = [];
     anchors.forEach(anchor => {
@@ -59,7 +57,6 @@ export default function TermsConditionsPage() {
           const target = document.querySelector(anchor.getAttribute('href'));
           if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-          // quick nav active state
           document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
           anchor.classList.add('active');
         }
@@ -68,7 +65,6 @@ export default function TermsConditionsPage() {
       anchorHandlers.push(() => anchor.removeEventListener('click', handler));
     });
 
-    // Navbar scroll/parallax
     let lastScroll = 0;
     const navbar = document.querySelector('.navbar');
     const onScroll = () => {
@@ -81,7 +77,6 @@ export default function TermsConditionsPage() {
       const shapes = document.querySelector('.index-shapes');
       if (shapes) shapes.style.transform = `translateY(${window.pageYOffset * 0.4}px)`;
 
-      // Highlight current section in quick nav
       const sections = document.querySelectorAll('.terms-section');
       const navLinks = document.querySelectorAll('.nav-links a');
       let currentSection = '';
@@ -97,7 +92,6 @@ export default function TermsConditionsPage() {
     };
     window.addEventListener('scroll', onScroll);
 
-    // Animate sections on scroll
     const animatedElements = document.querySelectorAll('.terms-section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -115,7 +109,6 @@ export default function TermsConditionsPage() {
       observer.observe(el);
     });
 
-    // Contact item hover icons
     const contactItems = document.querySelectorAll('.contact-item');
     const enter = (e) => { const icon = e.currentTarget.querySelector('i'); icon.style.transform = 'scale(1.2)'; };
     const leave = (e) => { const icon = e.currentTarget.querySelector('i'); icon.style.transform = 'scale(1)'; };
@@ -128,7 +121,6 @@ export default function TermsConditionsPage() {
       row.addEventListener('mouseleave', function() { this.style.transform = 'translateX(0)'; });
     });
 
-    // Add dynamic style for small animations
     const style = document.createElement('style');
     style.textContent = `
       .terms-section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -145,12 +137,10 @@ export default function TermsConditionsPage() {
       const shapes = document.querySelectorAll('.index-shape, .luxury-shape');
       shapes.forEach(shape => shape.style.animationPlayState = 'running');
 
-      // activate first quick-nav link
       const navLinks = document.querySelectorAll('.nav-links a');
       if (navLinks.length > 0) navLinks[0].classList.add('active');
     }, 100);
 
-    // Section number animation
     const sectionHeaders = document.querySelectorAll('.terms-section h2');
     sectionHeaders.forEach((header, index) => {
       const number = document.createElement('span');
@@ -164,7 +154,6 @@ export default function TermsConditionsPage() {
       numberObserver.observe(header);
     });
 
-    // cleanup
     return () => {
       mobileMenuBtn?.removeEventListener('click', mobileHandler);
       anchors.forEach((a, i) => anchorHandlers[i]());

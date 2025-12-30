@@ -4,8 +4,6 @@ import '../assets/css/Home.css';
 
 export default function HomePage() {
   useEffect(() => {
-    // Ported DOM interactions from original HTML into effect
-    // Many functions attach to window so HTML onClick handlers still work if needed
 
     const cleanupFns = [];
 
@@ -48,7 +46,6 @@ export default function HomePage() {
         indexShapes.appendChild(shape);
       }
 
-      // cleanup shapes
       cleanupFns.push(() => {
         while (indexShapes.firstChild) indexShapes.removeChild(indexShapes.firstChild);
       });
@@ -79,7 +76,6 @@ export default function HomePage() {
 
     cleanupFns.push(() => intervalIds.forEach(id => clearInterval(id)));
 
-    // Basic UI toggles - mobile menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
 
@@ -137,11 +133,9 @@ export default function HomePage() {
     // Social login stub
     window.socialLogin = (provider) => {
       console.log('social login:', provider);
-      // Placeholder: open provider auth flow or show a toast
     };
     cleanupFns.push(() => { delete window.socialLogin; });
 
-    // Lost & Found category selection
     const categoryCards = document.querySelectorAll('.category-card');
     const categoryHandler = (e) => {
       const selected = e.currentTarget.getAttribute('data-category');
@@ -181,7 +175,6 @@ export default function HomePage() {
         lostTx.classList.add('visible');
       }
 
-      // Optionally scroll to transaction
       document.getElementById('transactionOverlay')?.scrollIntoView({ behavior: 'smooth' });
     };
 
@@ -207,7 +200,6 @@ export default function HomePage() {
     closeQuick?.addEventListener('click', closeQuickHandler);
     cleanupFns.push(() => { quickToggle?.removeEventListener('click', toggleQuick); closeQuick?.removeEventListener('click', closeQuickHandler); });
 
-    // Expose quick actions to window
     window.showLostFoundReport = () => {
       document.getElementById('lostfound-section')?.scrollIntoView({ behavior: 'smooth' });
       if (quickWindow) quickWindow.classList.remove('open');
@@ -219,7 +211,6 @@ export default function HomePage() {
     };
     cleanupFns.push(() => { delete window.scrollToAuth; });
 
-    // Item found transaction handlers
     window.showItemFoundTransaction = () => {
       const itemTx = document.getElementById('itemfoundTransaction');
       if (itemTx) {
@@ -236,7 +227,6 @@ export default function HomePage() {
     };
     cleanupFns.push(() => { delete window.showItemFoundTransaction; delete window.closeItemfoundTransaction; });
 
-    // Lostfound close
     window.closeLostfoundTransaction = () => {
       const lostTx = document.getElementById('lostfoundTransaction');
       if (lostTx) {
@@ -284,7 +274,6 @@ export default function HomePage() {
       appendMessage(val, 'user');
       if (chatInput) chatInput.value = '';
 
-      // bot response (placeholder)
       setTimeout(() => {
         appendMessage(`Thanks! I can help with: \n- Book seat\n- Check lost item status\n- Contact support`, 'bot');
       }, 600);
@@ -303,7 +292,6 @@ export default function HomePage() {
     quickReplies.forEach(q => q.addEventListener('click', quickReplyHandler));
     cleanupFns.push(() => quickReplies.forEach(q => q.removeEventListener('click', quickReplyHandler)));
 
-    // cleanup
     return () => {
       cleanupFns.forEach(fn => fn());
     };
