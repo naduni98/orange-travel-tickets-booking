@@ -141,18 +141,40 @@ export default function TermsConditionsPage() {
       if (navLinks.length > 0) navLinks[0].classList.add('active');
     }, 100);
 
-    const sectionHeaders = document.querySelectorAll('.terms-section h2');
-    sectionHeaders.forEach((header, index) => {
-      const number = document.createElement('span');
-      number.className = 'section-number';
-      number.textContent = `${index + 1}.`;
-      number.style.cssText = `color: var(--primary-orange); font-weight:800; margin-right:10px; font-size:28px; opacity:0; transform:scale(0); transition: opacity 0.5s ease, transform 0.5s ease;`;
-      header.insertBefore(number, header.firstChild);
-      const numberObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) { setTimeout(() => { number.style.opacity = '1'; number.style.transform = 'scale(1)'; }, index * 100); } });
-      }, { threshold: 0.5 });
-      numberObserver.observe(header);
+   const sectionHeaders = document.querySelectorAll('.terms-section h2');
+
+sectionHeaders.forEach((header, index) => {
+
+  // 🔒 Prevent duplicate insertion (React StrictMode fix)
+  if (header.querySelector('.section-number')) return;
+
+  const number = document.createElement('span');
+  number.className = 'section-number';
+  number.textContent = `${index + 1}.`;
+  number.style.cssText = `
+    color: var(--primary-orange);
+    font-weight:800;
+    margin-right:10px;
+    font-size:28px;
+    opacity:0;
+    transform:scale(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  `;
+
+  header.insertBefore(number, header.firstChild);
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        number.style.opacity = '1';
+        number.style.transform = 'scale(1)';
+      }
     });
+  }, { threshold: 0.5 });
+
+  observer.observe(header);
+});
+
 
     return () => {
       mobileMenuBtn?.removeEventListener('click', mobileHandler);
@@ -434,7 +456,7 @@ export default function TermsConditionsPage() {
               <h3><i className="fas fa-question-circle" /> Questions About Our Terms?</h3>
               <p>If you have any questions about these Terms and Conditions, please contact our legal department for clarification.</p>
 
-              <div className="contact-info">
+              <div className="contact-info-new2">
                 <div className="contact-item"><i className="fas fa-envelope" /><div className="contact-text"><h4>Legal Department</h4><p>legal@orangetravel.lk</p></div></div>
                 <div className="contact-item"><i className="fas fa-phone" /><div className="contact-text"><h4>Legal Hotline</h4><p>+94 11 234 5679</p></div></div>
                 <div className="contact-item"><i className="fas fa-map-marker-alt" /><div className="contact-text"><h4>Legal Address</h4><p>Orange Travel Legal Dept.<br />123 Legal Lane, Colombo 01000</p></div></div>

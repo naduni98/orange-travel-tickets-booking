@@ -153,10 +153,279 @@ export default function SeatBookingPage() {
     };
 
     window.showProfileModal = () => {
-      alert('Profile modal (converted)');
+      const userProfile = {
+        name: 'John Doe',
+        email: 'john@example.com',
+        phone: '+94 77 123 4567',
+        bookings: [
+          { id: 1, route: 'Colombo → Kandy', date: '2024-01-15' },
+          { id: 2, route: 'Kandy → Galle', date: '2024-01-20' }
+        ]
+      };
+
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 20px;
+        animation: fadeIn 0.3s ease;
+      `;
+      
+      modal.innerHTML = `
+        <div style="background: var(--glass-bg); backdrop-filter: blur(30px); border-radius: var(--radius-md); padding: 40px; max-width: 500px; width: 100%; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); position: relative;">
+          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--primary-orange); font-size: 24px; cursor: pointer;">
+            <i class="fas fa-times"></i>
+          </button>
+          
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="background: linear-gradient(135deg, var(--purple) 0%, #8e44ad 100%); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">
+              <i class="fas fa-user"></i>
+            </div>
+            <h2 style="color: var(--dark-gray); margin-bottom: 10px;">My Profile</h2>
+            <p style="color: var(--text-gray); font-size: 14px;">Manage your account and preferences</p>
+          </div>
+          
+          <div style="background: rgba(255, 255, 255, 0.9); border-radius: var(--radius-sm); padding: 25px; margin-bottom: 25px; border: 1px solid rgba(255, 107, 53, 0.1);">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;">
+                <i class="fas fa-user"></i>
+              </div>
+              <div>
+                <h3 style="color: var(--dark-gray); margin-bottom: 5px;">${userProfile.name}</h3>
+                <p style="color: var(--text-gray); font-size: 14px;">Premium Member</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px;">
+              <span style="color: var(--text-gray);">Email:</span>
+              <span style="color: var(--dark-gray); font-weight: 600;">${userProfile.email}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px;">
+              <span style="color: var(--text-gray);">Phone:</span>
+              <span style="color: var(--dark-gray); font-weight: 600;">${userProfile.phone}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 14px;">
+              <span style="color: var(--text-gray);">Total Bookings:</span>
+              <span style="color: var(--primary-orange); font-weight: 600;">${userProfile.bookings.length}</span>
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 15px;">
+            <button onclick="window.showBookingHistory && window.showBookingHistory()" style="flex: 1; background: linear-gradient(135deg, var(--teal) 0%, #16a085 100%); color: white; border: none; border-radius: var(--radius-sm); padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: var(--transition);">
+              <i class="fas fa-history"></i> History
+            </button>
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="flex: 1; background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%); color: white; border: none; border-radius: var(--radius-sm); padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: var(--transition);">
+              <i class="fas fa-sign-out-alt"></i> Close
+            </button>
+          </div>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+      
+      if (!document.getElementById('profile-modal-styles')) {
+        const style = document.createElement('style');
+        style.id = 'profile-modal-styles';
+        style.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
     };
-    window.showBookingHistory = () => { alert('Booking history (converted)'); };
-    window.showSupportModal = () => { alert('Support modal (converted)'); };
+    window.showBookingHistory = () => {
+      const userProfile = {
+        name: 'John Doe',
+        email: 'john@example.com',
+        phone: '+94 77 123 4567',
+        bookings: [
+          { transactionId: 'TXN-1001', journeyType: 'Colombo → Kandy', bookingTime: '2024-01-15T10:00:00Z', totalPrice: 2500 },
+          { transactionId: 'TXN-1002', journeyType: 'Kandy → Galle', bookingTime: '2024-01-20T14:30:00Z', totalPrice: 1800 }
+        ]
+      };
+
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 20px;
+        animation: fadeIn 0.3s ease;
+      `;
+
+      let bookingsHTML = '';
+      if (userProfile.bookings.length > 0) {
+        bookingsHTML = userProfile.bookings.map(booking => `
+          <div style="background: rgba(255, 255, 255, 0.9); border-radius: var(--radius-sm); padding: 15px; margin-bottom: 15px; border: 1px solid rgba(255, 107, 53, 0.1);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px;">
+              <span style="color: var(--text-gray);">Transaction ID:</span>
+              <span style="color: var(--primary-orange); font-weight: 600;">${booking.transactionId}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px;">
+              <span style="color: var(--text-gray);">Journey:</span>
+              <span style="color: var(--dark-gray); font-weight: 600;">${booking.journeyType}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px;">
+              <span style="color: var(--text-gray);">Date:</span>
+              <span style="color: var(--dark-gray); font-weight: 600;">${new Date(booking.bookingTime).toLocaleDateString()}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+              <span style="color: var(--text-gray);">Amount:</span>
+              <span style="color: var(--primary-orange); font-weight: 600;">LKR ${booking.totalPrice.toLocaleString()}</span>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        bookingsHTML = `
+          <div style="text-align: center; padding: 30px; color: var(--text-gray); font-size: 14px;">
+            <i class="fas fa-history" style="font-size: 48px; margin-bottom: 15px; color: var(--light-gray);"></i>
+            <p>No booking history yet</p>
+            <p style="font-size: 12px; margin-top: 10px;">Your bookings will appear here</p>
+          </div>
+        `;
+      }
+
+      modal.innerHTML = `
+        <div style="background: var(--glass-bg); backdrop-filter: blur(30px); border-radius: var(--radius-md); padding: 40px; max-width: 500px; width: 100%; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); position: relative; max-height: 80vh; overflow-y: auto;">
+          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--primary-orange); font-size: 24px; cursor: pointer;">
+            <i class="fas fa-times"></i>
+          </button>
+
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="background: linear-gradient(135deg, var(--teal) 0%, #16a085 100%); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">
+              <i class="fas fa-history"></i>
+            </div>
+            <h2 style="color: var(--dark-gray); margin-bottom: 10px;">Booking History</h2>
+            <p style="color: var(--text-gray); font-size: 14px;">View all your past bookings</p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            ${bookingsHTML}
+          </div>
+
+          <button onclick="this.parentElement.parentElement.remove()" style="width: 100%; background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%); color: white; border: none; border-radius: var(--radius-sm); padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: var(--transition);">
+            <i class="fas fa-times"></i> Close
+          </button>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      if (!document.getElementById('profile-modal-styles')) {
+        const style = document.createElement('style');
+        style.id = 'profile-modal-styles';
+        style.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    };
+    window.showSupportModal = () => {
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 20px;
+        animation: fadeIn 0.3s ease;
+      `;
+
+      modal.innerHTML = `
+        <div style="background: var(--glass-bg); backdrop-filter: blur(30px); border-radius: var(--radius-md); padding: 40px; max-width: 500px; width: 100%; border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow); position: relative;">
+          <button onclick="this.parentElement.parentElement.remove()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--primary-orange); font-size: 24px; cursor: pointer;">
+            <i class="fas fa-times"></i>
+          </button>
+          
+          <div style="text-align: center; margin-bottom: 30px;">
+            <div style="background: linear-gradient(135deg, var(--info-blue) 0%, #2980b9 100%); color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px;">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h2 style="color: var(--dark-gray); margin-bottom: 10px;">24/7 Support</h2>
+            <p style="color: var(--text-gray); font-size: 14px;">We're here to help you anytime</p>
+          </div>
+          
+          <div style="background: rgba(255, 255, 255, 0.9); border-radius: var(--radius-sm); padding: 25px; margin-bottom: 25px; border: 1px solid rgba(255, 107, 53, 0.1);">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--success-green) 0%, #27ae60 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <h3 style="color: var(--dark-gray); margin-bottom: 5px; font-size: 16px;">Call Us</h3>
+                <p style="color: var(--primary-orange); font-weight: 600; font-size: 18px;">+94 11 234 5678</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--warning-yellow) 0%, #d35400 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h3 style="color: var(--dark-gray); margin-bottom: 5px; font-size: 16px;">Email Us</h3>
+                <p style="color: var(--primary-orange); font-weight: 600; font-size: 16px;">support@orangetravel.lk</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 15px;">
+              <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--purple) 0%, #8e44ad 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;">
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div>
+                <h3 style="color: var(--dark-gray); margin-bottom: 5px; font-size: 16px;">WhatsApp</h3>
+                <p style="color: var(--primary-orange); font-weight: 600; font-size: 16px;">+94 77 123 4567</p>
+              </div>
+            </div>
+          </div>
+          
+          <button onclick="this.parentElement.parentElement.remove()" style="width: 100%; background: linear-gradient(135deg, var(--primary-orange) 0%, var(--secondary-orange) 100%); color: white; border: none; border-radius: var(--radius-sm); padding: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: var(--transition);">
+            <i class="fas fa-times"></i> Close
+          </button>
+        </div>
+      `;
+      
+      document.body.appendChild(modal);
+
+      if (!document.getElementById('profile-modal-styles')) {
+        const style = document.createElement('style');
+        style.id = 'profile-modal-styles';
+        style.textContent = `
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    };
 
     window.confirmBooking = () => {
       const seats = Array.from(document.querySelectorAll('.seat.selected')).map(s => s.dataset.seatNumber);
@@ -525,7 +794,7 @@ export default function SeatBookingPage() {
                         </div>
 
                         {leg.transport === 'train' ? (
-                          <div className={`leg-train-class ${leg.trainClass ? 'active' : ''}`} id={`leg-train-class-${idx}`}>
+                          <div className={`leg-train-class ${leg.transport === 'train' ? 'active' : ''}`} id={`leg-train-class-${idx}`}>
                             <h4 style={{color:'var(--dark-gray)', marginBottom:15, display:'flex', alignItems:'center', gap:10}}><i className="fas fa-ticket-alt" style={{color:'var(--primary-orange)'}}></i> Select Train Class for Leg {idx+1}</h4>
                             <div className="class-options" style={{gridTemplateColumns:'repeat(3,1fr)'}}>
                               <div className={`class-option ${leg.trainClass === 'first' ? 'selected' : ''}`} onClick={() => updateLeg(idx, { trainClass: 'first' })}><i className="fas fa-crown class-icon first-class" /><h4 style={{fontSize:16}}>First Class</h4><div className="class-price">+LKR 1,500</div></div>

@@ -292,7 +292,7 @@ export default function PrivacyPolicyPage() {
             <div className="contact-card">
               <h3><i className="fas fa-headset" /> Contact Our Privacy Team</h3>
               <p>If you have any questions about this Privacy Policy, your personal information, or wish to exercise your rights, please contact our dedicated privacy team.</p>
-              <div className="contact-info">
+              <div className="contact-info-new">
                 <div className="contact-item"><i className="fas fa-envelope" /><div className="contact-text"><h4>Email Address</h4><p>privacy@orangetravel.lk</p></div></div>
                 <div className="contact-item"><i className="fas fa-phone" /><div className="contact-text"><h4>Phone Number</h4><p>+94 11 234 5678 (Ext. 2)</p></div></div>
                 <div className="contact-item"><i className="fas fa-map-marker-alt" /><div className="contact-text"><h4>Mailing Address</h4><p>Orange Travel Ltd.<br />123 Privacy Lane, Colombo 01000</p></div></div>

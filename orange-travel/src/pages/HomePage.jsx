@@ -189,11 +189,11 @@ export default function HomePage() {
     const closeQuick = document.getElementById('closeQuickAction');
 
     const toggleQuick = () => {
-      if (quickWindow) quickWindow.classList.toggle('open');
+      if (quickWindow) quickWindow.classList.toggle('active');
     };
 
     const closeQuickHandler = () => {
-      if (quickWindow) quickWindow.classList.remove('open');
+      if (quickWindow) quickWindow.classList.remove('active');
     };
 
     quickToggle?.addEventListener('click', toggleQuick);
@@ -202,7 +202,7 @@ export default function HomePage() {
 
     window.showLostFoundReport = () => {
       document.getElementById('lostfound-section')?.scrollIntoView({ behavior: 'smooth' });
-      if (quickWindow) quickWindow.classList.remove('open');
+      if (quickWindow) quickWindow.classList.remove('active');
     };
     cleanupFns.push(() => { delete window.showLostFoundReport; });
 
@@ -242,11 +242,11 @@ export default function HomePage() {
     const closeChat = document.getElementById('closeChat');
 
     const toggleChat = () => {
-      if (chatbotWindow) chatbotWindow.classList.toggle('open');
+      if (chatbotWindow) chatbotWindow.classList.toggle('active');
     };
 
     const closeChatHandler = () => {
-      if (chatbotWindow) chatbotWindow.classList.remove('open');
+      if (chatbotWindow) chatbotWindow.classList.remove('active');
     };
 
     chatbotToggle?.addEventListener('click', toggleChat);

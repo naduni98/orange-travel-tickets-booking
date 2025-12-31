@@ -53,7 +53,7 @@ export default function ContactUsPage() {
     };
     document.addEventListener('click', outsideClick);
 
-    const animatedElements = document.querySelectorAll('.contact-card, .faq-item, .contact-images-section, .vehicle-description');
+    const animatedElements = document.querySelectorAll('.contact-card-new, .faq-item, .contact-images-section, .vehicle-description');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -221,7 +221,7 @@ export default function ContactUsPage() {
 
           <div className="contact-container">
             <div className="contact-info">
-              <div className="contact-card">
+              <div className="bg-whites contact-card-new">
                 <div className="contact-card-header">
                   <div className="contact-icon"><i className="fas fa-phone-alt" /></div>
                   <h3>Phone Support</h3>
@@ -234,7 +234,7 @@ export default function ContactUsPage() {
                 </div>
               </div>
 
-              <div className="contact-card">
+              <div className="contact-card-new">
                 <div className="contact-card-header">
                   <div className="contact-icon"><i className="fas fa-envelope" /></div>
                   <h3>Email</h3>
@@ -247,7 +247,7 @@ export default function ContactUsPage() {
                 </div>
               </div>
 
-              <div className="contact-card">
+              <div className="contact-card-new">
                 <div className="contact-card-header">
                   <div className="contact-icon"><i className="fas fa-map-marker-alt" /></div>
                   <h3>Office Location</h3>
@@ -260,7 +260,7 @@ export default function ContactUsPage() {
                 </div>
               </div>
 
-              <div className="contact-card">
+              <div className="contact-card-new">
                 <div className="contact-card-header">
                   <div className="contact-icon"><i className="fas fa-headset" /></div>
                   <h3>Social Media</h3>

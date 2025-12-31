@@ -356,12 +356,14 @@ body {
     overflow: hidden
 }
 
-.contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 30px
+.contact-info-new {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        position: relative;
+        z-index: 1;
 }
 
 .contact-item {
@@ -445,7 +447,7 @@ body {
         padding: 40px
     }
 
-    .contact-info {
+    .contact-info-new {
         flex-direction: column;
         align-items: center
     }
